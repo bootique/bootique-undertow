@@ -9,8 +9,6 @@ Provides [Undertow](http://undertow.io/) integration with [Bootique](http://boot
 
 Features:
 
-1. Configure via bootique YAML config.
-2. Easy define handlers
-3. ...
-
-
+1. Configure server via Bootique YAML config.
+2. Contribute HanlerWrappers
+3. Contribute Controllers
