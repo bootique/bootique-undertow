@@ -107,19 +107,26 @@ public class UndertowModule extends ConfigModule {
 
         final PathHandler pathHandler = path();
 
-        pathHandler.addPrefixPath("/", root);
+        controllers.forEach(controller ->
+                LOGGER.info("Controller '{}' registered.", controller.getClass().getSimpleName()));
 
-        if (config.getStaticFiles() != null) {
-            final String url = config.getStaticFiles().getUrl();
-            final ResourceHandler resourceHandler = new ResourceHandler(config.getStaticFiles().getResourceManager());
 
-            pathHandler.addPrefixPath(url, resourceHandler);
+        if (config.getStaticFiles().size() > 0) {
+            for (StaticResourceFactory filesConfig : config.getStaticFiles()) {
+                final String url = filesConfig.getUrl();
+                if ("/".equals(filesConfig.getUrl())) {
+                    routingHandler.setFallbackHandler(new ResourceHandler(filesConfig.getResourceManager()));
+                } else {
+                    final ResourceHandler resourceHandler = new ResourceHandler(filesConfig.getResourceManager());
+                    pathHandler.addPrefixPath(url, resourceHandler);
+                }
+            }
         }
+
+        pathHandler.addPrefixPath("/", root);
 
         builder.setHandler(pathHandler);
 
-        controllers.forEach(controller ->
-                LOGGER.info("Controller '{}' registered.", controller.getClass().getSimpleName()));
 
         // UndertowOptions;
 

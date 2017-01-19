@@ -19,11 +19,12 @@ public class UndertowFactory {
     private Integer ioThreads;
     private Integer workerThreads;
     private Boolean directBuffers;
-    private StaticResourceFactory staticFiles;
+    private List<StaticResourceFactory> staticFiles;
 
     public UndertowFactory() {
         httpListeners = Collections.singletonList(new HttpListener());
         httpsListeners = new ArrayList<>();
+        staticFiles = new ArrayList<>();
     }
 
     public List<HttpListener> getHttpListeners() {
@@ -80,11 +81,11 @@ public class UndertowFactory {
         return this;
     }
 
-    public StaticResourceFactory getStaticFiles() {
+    public List<StaticResourceFactory> getStaticFiles() {
         return staticFiles;
     }
 
-    public UndertowFactory setStaticFiles(StaticResourceFactory staticFiles) {
+    public UndertowFactory setStaticFiles(List<StaticResourceFactory> staticFiles) {
         this.staticFiles = staticFiles;
         return this;
     }

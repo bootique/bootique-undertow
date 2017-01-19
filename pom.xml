@@ -28,7 +28,7 @@
     <properties>
         <bootique-version>0.20</bootique-version>
         <bootique-metrics-version>0.8</bootique-metrics-version>
-        <undertow-version>1.4.6.Final</undertow-version>
+        <undertow-version>1.4.8.Final</undertow-version>
     </properties>
 
     <scm>

@@ -1,0 +1,6 @@
+undertow:
+  staticFiles:
+    - path: classpath:public
+      cache: true
+      url: /static
+
