@@ -2,10 +2,10 @@ package io.bootique.undertow.command;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import io.bootique.application.CommandMetadata;
 import io.bootique.cli.Cli;
 import io.bootique.command.CommandOutcome;
 import io.bootique.command.CommandWithMetadata;
+import io.bootique.meta.application.CommandMetadata;
 import io.bootique.undertow.UndertowServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
