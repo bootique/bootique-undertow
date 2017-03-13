@@ -1,14 +1,14 @@
 package io.bootique.undertow;
 
-import com.google.inject.Inject;
 import io.bootique.undertow.handlers.Controller;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.server.RoutingHandler;
 import io.undertow.util.Headers;
 
 public class EchoRestController implements Controller {
-    @Inject
-    public EchoRestController(RoutingHandler routingHandler) {
+
+    @Override
+    public void defineRoutes(RoutingHandler routingHandler) {
         routingHandler
                 .get("/", this::get)
                 .get("/exception", this::getException)

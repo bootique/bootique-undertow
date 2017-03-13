@@ -32,12 +32,16 @@ public class UndertowModule extends ConfigModule {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UndertowModule.class);
 
-    public static Multibinder<HandlerWrapper> contributeHandlers(Binder binder) {
-        return Multibinder.newSetBinder(binder, HandlerWrapper.class);
+    public static Multibinder<HttpHandler> contributeHandlers(Binder binder) {
+        return Multibinder.newSetBinder(binder, HttpHandler.class);
     }
 
     public static Multibinder<Controller> contributeControllers(Binder binder) {
         return Multibinder.newSetBinder(binder, Controller.class);
+    }
+
+    public static Multibinder<HandlerWrapper> contributeWrappers(Binder binder) {
+        return Multibinder.newSetBinder(binder, HandlerWrapper.class);
     }
 
     @Override
@@ -49,6 +53,7 @@ public class UndertowModule extends ConfigModule {
                 .in(Singleton.class);
 
         UndertowModule.contributeHandlers(binder);
+        UndertowModule.contributeWrappers(binder);
         UndertowModule.contributeControllers(binder);
     }
 
@@ -107,15 +112,19 @@ public class UndertowModule extends ConfigModule {
 
         final PathHandler pathHandler = path();
 
-        controllers.forEach(controller ->
-                LOGGER.info("Controller '{}' registered.", controller.getClass().getSimpleName()));
+        controllers.forEach(controller -> {
+            controller.defineRoutes(routingHandler);
+            LOGGER.info("Controller '{}' registered.", controller.getClass().getSimpleName());
+        });
 
 
         if (config.getStaticFiles().size() > 0) {
             for (StaticResourceFactory filesConfig : config.getStaticFiles()) {
                 final String url = filesConfig.getUrl();
                 if ("/".equals(filesConfig.getUrl())) {
-                    routingHandler.setFallbackHandler(new ResourceHandler(filesConfig.getResourceManager()));
+                    if (routingHandler.getFallbackHandler() != null) {
+                        routingHandler.setFallbackHandler(new ResourceHandler(filesConfig.getResourceManager(), routingHandler.getFallbackHandler()));
+                    }
                 } else {
                     final ResourceHandler resourceHandler = new ResourceHandler(filesConfig.getResourceManager());
                     pathHandler.addPrefixPath(url, resourceHandler);

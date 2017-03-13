@@ -6,12 +6,12 @@
     <parent>
         <groupId>io.bootique.modules.parent</groupId>
         <artifactId>bootique-modules-parent</artifactId>
-        <version>0.2</version>
+        <version>0.7</version>
     </parent>
 
     <groupId>io.bootique.undertow</groupId>
     <artifactId>bootique-undertow-parent</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bootique-undertow-parent</name>
@@ -26,9 +26,10 @@
     </modules>
 
     <properties>
-        <bootique-version>0.20</bootique-version>
-        <bootique-metrics-version>0.8</bootique-metrics-version>
-        <undertow-version>1.4.8.Final</undertow-version>
+        <bootique-version>0.22-SNAPSHOT</bootique-version>
+        <bootique-metrics-version>0.9-SNAPSHOT</bootique-metrics-version>
+        <bootique-logback-version>0.14-SNAPSHOT</bootique-logback-version>
+        <undertow-version>1.4.11.Final</undertow-version>
     </properties>
 
     <scm>
@@ -80,17 +81,12 @@
             <dependency>
                 <groupId>io.bootique.logback</groupId>
                 <artifactId>bootique-logback</artifactId>
-                <version>0.12</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.7.13</version>
+                <version>${bootique-logback-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-simple</artifactId>
-                <version>1.7.13</version>
+                <version>${slf4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -5,7 +5,7 @@ import com.google.inject.Module;
 import io.bootique.Bootique;
 
 import static io.bootique.undertow.UndertowModule.contributeControllers;
-import static io.bootique.undertow.UndertowModule.contributeHandlers;
+import static io.bootique.undertow.UndertowModule.contributeWrappers;
 
 public class Application implements Module {
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class Application implements Module {
                 .addBinding()
                 .to(EchoRestController.class);
 
-        contributeHandlers(binder)
+        contributeWrappers(binder)
                 .addBinding()
                 .to(ApplicationExceptionHandler.class);
     }
