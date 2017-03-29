@@ -1,5 +1,7 @@
 package io.bootique.undertow;
 
+import io.bootique.annotation.BQConfig;
+import io.bootique.annotation.BQConfigProperty;
 import io.bootique.undertow.config.HttpListener;
 import io.bootique.undertow.config.HttpsListener;
 
@@ -12,6 +14,7 @@ import java.util.List;
  *
  * @since 0.1
  */
+@BQConfig
 public class UndertowFactory {
     private List<HttpListener> httpListeners;
     private List<HttpsListener> httpsListeners;
@@ -31,6 +34,7 @@ public class UndertowFactory {
         return httpListeners;
     }
 
+    @BQConfigProperty
     public UndertowFactory setHttpListeners(List<HttpListener> httpListeners) {
         this.httpListeners = httpListeners;
         return this;
@@ -40,6 +44,7 @@ public class UndertowFactory {
         return httpsListeners;
     }
 
+    @BQConfigProperty
     public UndertowFactory setHttpsListeners(List<HttpsListener> httpsListeners) {
         this.httpsListeners = httpsListeners;
         return this;
@@ -49,6 +54,7 @@ public class UndertowFactory {
         return bufferSize;
     }
 
+    @BQConfigProperty
     public UndertowFactory setBufferSize(Integer bufferSize) {
         this.bufferSize = bufferSize;
         return this;
@@ -58,6 +64,7 @@ public class UndertowFactory {
         return ioThreads;
     }
 
+    @BQConfigProperty
     public UndertowFactory setIoThreads(Integer ioThreads) {
         this.ioThreads = ioThreads;
         return this;
@@ -67,6 +74,7 @@ public class UndertowFactory {
         return workerThreads;
     }
 
+    @BQConfigProperty
     public UndertowFactory setWorkerThreads(Integer workerThreads) {
         this.workerThreads = workerThreads;
         return this;
@@ -76,6 +84,7 @@ public class UndertowFactory {
         return directBuffers;
     }
 
+    @BQConfigProperty
     public UndertowFactory setDirectBuffers(Boolean directBuffers) {
         this.directBuffers = directBuffers;
         return this;
@@ -85,6 +94,7 @@ public class UndertowFactory {
         return staticFiles;
     }
 
+    @BQConfigProperty
     public UndertowFactory setStaticFiles(List<StaticResourceFactory> staticFiles) {
         this.staticFiles = staticFiles;
         return this;

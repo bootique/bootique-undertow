@@ -1,5 +1,7 @@
 package io.bootique.undertow;
 
+import io.bootique.annotation.BQConfig;
+import io.bootique.annotation.BQConfigProperty;
 import io.bootique.resource.FolderResourceFactory;
 import io.undertow.server.handlers.resource.PathResourceManager;
 import io.undertow.server.handlers.resource.ResourceManager;
@@ -12,6 +14,7 @@ import java.nio.file.Paths;
  *
  * @since 0.1
  */
+@BQConfig
 public class StaticResourceFactory {
     /**
      * Path of folder with files.
@@ -35,6 +38,7 @@ public class StaticResourceFactory {
         return path;
     }
 
+    @BQConfigProperty
     public StaticResourceFactory setPath(FolderResourceFactory path) {
         this.path = path;
         return this;
@@ -44,6 +48,7 @@ public class StaticResourceFactory {
         return url;
     }
 
+    @BQConfigProperty
     public StaticResourceFactory setUrl(String url) {
         this.url = url;
         return this;
@@ -53,6 +58,7 @@ public class StaticResourceFactory {
         return cache;
     }
 
+    @BQConfigProperty
     public StaticResourceFactory setCache(boolean cache) {
         this.cache = cache;
         return this;

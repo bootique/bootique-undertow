@@ -46,12 +46,9 @@ public class UndertowModule extends ConfigModule {
 
     @Override
     public void configure(Binder binder) {
-        BQCoreModule
-                .contributeCommands(binder)
-                .addBinding()
-                .to(ServerCommand.class)
-                .in(Singleton.class);
+        BQCoreModule.extend(binder).addCommand(ServerCommand.class);
 
+        // TODO: refactor to use extender API similar to other modules
         UndertowModule.contributeHandlers(binder);
         UndertowModule.contributeWrappers(binder);
         UndertowModule.contributeControllers(binder);
