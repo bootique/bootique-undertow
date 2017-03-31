@@ -29,8 +29,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.bootique.logback</groupId>
-            <artifactId>bootique-logback</artifactId>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
             <scope>compile</scope>
         </dependency>
 

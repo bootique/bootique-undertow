@@ -26,9 +26,7 @@
     </modules>
 
     <properties>
-        <bootique-version>0.22-SNAPSHOT</bootique-version>
-        <bootique-metrics-version>0.9-SNAPSHOT</bootique-metrics-version>
-        <bootique-logback-version>0.14-SNAPSHOT</bootique-logback-version>
+        <bootique-version>0.22</bootique-version>
         <undertow-version>1.4.11.Final</undertow-version>
     </properties>
 
@@ -72,16 +70,6 @@
                 <groupId>io.bootique</groupId>
                 <artifactId>bootique-test</artifactId>
                 <version>${bootique-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.bootique.metrics</groupId>
-                <artifactId>bootique-metrics</artifactId>
-                <version>${bootique-metrics-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.bootique.logback</groupId>
-                <artifactId>bootique-logback</artifactId>
-                <version>${bootique-logback-version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
