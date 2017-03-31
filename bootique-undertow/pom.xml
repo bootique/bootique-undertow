@@ -12,7 +12,7 @@
     <artifactId>bootique-undertow</artifactId>
     <packaging>jar</packaging>
 
-    <name>bootique-undertow</name>
+    <name>bootique-undertow: Undertow HTTP Server integration with Bootique</name>
     <description>
         Provides Undertow HTTP Server integration with Bootique.
     </description>
