@@ -32,14 +32,41 @@ public class UndertowModule extends ConfigModule {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UndertowModule.class);
 
+    /**
+     * @param binder Guice binder.
+     * @return an extender object to customize {@link UndertowModule}.
+     * @since 0.2
+     */
+    public static UndertowModuleExtender extend(Binder binder) {
+        return new UndertowModuleExtender(binder);
+    }
+
+    /**
+     * @param binder Guice binder.
+     * @return handlers multibinder
+     * @deprecated since 0.2 in favor of {@link #extend(Binder)} method.
+     */
+    @Deprecated
     public static Multibinder<HttpHandler> contributeHandlers(Binder binder) {
         return Multibinder.newSetBinder(binder, HttpHandler.class);
     }
 
+    /**
+     * @param binder Guice binder.
+     * @return controllers multibinder
+     * @deprecated since 0.2 in favor of {@link #extend(Binder)} method.
+     */
+    @Deprecated
     public static Multibinder<Controller> contributeControllers(Binder binder) {
         return Multibinder.newSetBinder(binder, Controller.class);
     }
 
+    /**
+     * @param binder Guice binder.
+     * @return handler wrappers multibinder
+     * @deprecated since 0.2 in favor of {@link #extend(Binder)} method.
+     */
+    @Deprecated
     public static Multibinder<HandlerWrapper> contributeWrappers(Binder binder) {
         return Multibinder.newSetBinder(binder, HandlerWrapper.class);
     }
@@ -47,11 +74,7 @@ public class UndertowModule extends ConfigModule {
     @Override
     public void configure(Binder binder) {
         BQCoreModule.extend(binder).addCommand(ServerCommand.class);
-
-        // TODO: refactor to use extender API similar to other modules
-        UndertowModule.contributeHandlers(binder);
-        UndertowModule.contributeWrappers(binder);
-        UndertowModule.contributeControllers(binder);
+        UndertowModule.extend(binder).initAllExtensions();
     }
 
     @Provides
