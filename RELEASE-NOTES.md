@@ -1,3 +1,7 @@
+## 0.4
+
+* #3 Update UndertowTestFactory to match new core test API
+
 ## 0.3
 
 * #1 Upgrade to Bootique 0.22

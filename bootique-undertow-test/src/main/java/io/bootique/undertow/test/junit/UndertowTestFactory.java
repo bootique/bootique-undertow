@@ -1,8 +1,9 @@
 package io.bootique.undertow.test.junit;
 
 import io.bootique.BQCoreModule;
-import io.bootique.test.BQDaemonTestRuntime;
+import io.bootique.BQRuntime;
 import io.bootique.test.junit.BQDaemonTestFactory;
+import io.bootique.test.junit.BQRuntimeDaemon;
 import io.bootique.undertow.UndertowModule;
 import io.bootique.undertow.UndertowServer;
 import io.bootique.undertow.command.ServerCommand;
@@ -11,12 +12,11 @@ import org.junit.Rule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import java.util.Collection;
+import java.util.Map;
 import java.util.function.Function;
 
 /**
- * A integrational test helper that starts a Bootique Undertow server.
- * <p>
+ * A integration test helper that starts a Bootique Undertow server.
  * <p>
  * Instances should be annotated within the unit tests with {@link Rule} or
  * {@link ClassRule}. E.g.:
@@ -38,8 +38,7 @@ public class UndertowTestFactory extends BQDaemonTestFactory {
      */
     @Override
     public Builder app(String... args) {
-        Function<BQDaemonTestRuntime, Boolean> startupCheck =
-                r -> r.getRuntime().getInstance(UndertowServer.class).isStarted();
+        Function<BQRuntime, Boolean> startupCheck = r -> r.getInstance(UndertowServer.class).isStarted();
 
         return new Builder(runtimes, args)
                 .startupCheck(startupCheck)
@@ -51,17 +50,16 @@ public class UndertowTestFactory extends BQDaemonTestFactory {
         return super.apply(base, description);
     }
 
-
     public static class Builder extends io.bootique.test.junit.BQDaemonTestFactory.Builder<Builder> {
 
-        protected Builder(Collection<BQDaemonTestRuntime> runtimes, String[] args) {
+        protected Builder(Map<BQRuntime, BQRuntimeDaemon> runtimes, String[] args) {
             super(runtimes, args);
         }
 
         @Override
-        public BQDaemonTestRuntime start() {
+        public BQRuntime createRuntime() {
             module(binder -> BQCoreModule.extend(binder).setDefaultCommand(ServerCommand.class));
-            return super.start();
+            return super.createRuntime();
         }
     }
 }
