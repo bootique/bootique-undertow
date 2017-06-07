@@ -4,6 +4,7 @@ import com.google.inject.Binder;
 import com.google.inject.multibindings.Multibinder;
 import io.bootique.ModuleExtender;
 import io.bootique.undertow.handlers.Controller;
+import io.bootique.undertow.handlers.OrderedHandlerWrapper;
 import io.undertow.server.HandlerWrapper;
 import io.undertow.server.HttpHandler;
 
@@ -21,6 +22,7 @@ public class UndertowModuleExtender extends ModuleExtender<UndertowModuleExtende
         contributeControllers();
         contributeHandlers();
         contributeWrappers();
+        contributeOrderedWrappers();
         return this;
     }
 
@@ -34,8 +36,14 @@ public class UndertowModuleExtender extends ModuleExtender<UndertowModuleExtende
         return this;
     }
 
+    @Deprecated
     public UndertowModuleExtender addWrapper(Class<? extends HandlerWrapper> wrapperType) {
         contributeWrappers().addBinding().to(wrapperType);
+        return this;
+    }
+
+    public UndertowModuleExtender addOrderedWrapper(Class<? extends OrderedHandlerWrapper> orderedWrapperType) {
+        contributeOrderedWrappers().addBinding().to(orderedWrapperType);
         return this;
     }
 
@@ -47,7 +55,12 @@ public class UndertowModuleExtender extends ModuleExtender<UndertowModuleExtende
         return Multibinder.newSetBinder(binder, Controller.class);
     }
 
+    @Deprecated
     protected Multibinder<HandlerWrapper> contributeWrappers() {
         return Multibinder.newSetBinder(binder, HandlerWrapper.class);
+    }
+
+    protected Multibinder<OrderedHandlerWrapper> contributeOrderedWrappers() {
+        return Multibinder.newSetBinder(binder, OrderedHandlerWrapper.class);
     }
 }

@@ -9,6 +9,7 @@ import io.bootique.ConfigModule;
 import io.bootique.config.ConfigurationFactory;
 import io.bootique.undertow.command.ServerCommand;
 import io.bootique.undertow.handlers.Controller;
+import io.bootique.undertow.handlers.OrderedHandlerWrapper;
 import io.undertow.Handlers;
 import io.undertow.server.HandlerWrapper;
 import io.undertow.server.HttpHandler;
@@ -19,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.SSLContext;
+import java.util.List;
 import java.util.Set;
 
 import static io.undertow.Handlers.path;
@@ -94,6 +96,7 @@ public class UndertowModule extends ConfigModule {
     public Builder createBuilder(ConfigurationFactory configFactory,
                                  RoutingHandler routingHandler,
                                  Set<HandlerWrapper> handlerWrappers,
+                                 Set<OrderedHandlerWrapper> orderedHandlerWrappers,
                                  Set<Controller> controllers) {
         final Builder builder = builder();
         final UndertowFactory config = configFactory.config(UndertowFactory.class, configPrefix);
@@ -127,6 +130,14 @@ public class UndertowModule extends ConfigModule {
         if (handlerWrappers != null) {
             for (HandlerWrapper wrapper : handlerWrappers) {
                 root = wrapper.wrap(root);
+            }
+        }
+
+        if (orderedHandlerWrappers != null) {
+            final List<OrderedHandlerWrapper> orderedWrappers = UndertowModuleUtils.sortWrappers(orderedHandlerWrappers);
+
+            for (OrderedHandlerWrapper orderedWrapper : orderedWrappers) {
+                root = orderedWrapper.wrap(root);
             }
         }
 
