@@ -25,7 +25,7 @@
 
     <properties>
         <bootique-version>0.23-SNAPSHOT</bootique-version>
-        <undertow-version>1.4.11.Final</undertow-version>
+        <undertow-version>1.4.15.Final</undertow-version>
     </properties>
 
     <scm>
