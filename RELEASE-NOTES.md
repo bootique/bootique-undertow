@@ -1,6 +1,8 @@
 ## 0.4
 
 * #3 Update UndertowTestFactory to match new core test API
+* #5 No way to declare order of wrappers
+* #6 Update undertow to 1.4.15
 
 ## 0.3
 
