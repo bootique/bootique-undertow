@@ -30,7 +30,7 @@ public class StaticResourceFactory {
     private boolean cache;
 
     public ResourceManager getResourceManager() {
-        final Path folder = Paths.get(path.getUrl().getPath());
+        final Path folder = Paths.get(path.getResourceId());
         return new PathResourceManager(folder, 10000L);
     }
 
