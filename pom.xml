@@ -10,7 +10,7 @@
 
     <groupId>io.bootique.undertow</groupId>
     <artifactId>bootique-undertow-parent</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.24-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>bootique-undertow-parent</name>
