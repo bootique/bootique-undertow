@@ -4,6 +4,7 @@
 # bootique-undertow
 
 Provides [Undertow](http://undertow.io/) integration with [Bootique](http://bootique.io).
+See usage example [bootique-undertow-demo](https://github.com/bootique-examples/bootique-undertow-demo).
 
 ## Goals
 
