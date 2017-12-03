@@ -7,6 +7,8 @@ import com.google.inject.multibindings.Multibinder;
 import io.bootique.BQCoreModule;
 import io.bootique.ConfigModule;
 import io.bootique.config.ConfigurationFactory;
+import io.bootique.log.BootLogger;
+import io.bootique.shutdown.ShutdownManager;
 import io.bootique.undertow.command.ServerCommand;
 import io.bootique.undertow.handlers.Controller;
 import io.bootique.undertow.handlers.OrderedHandlerWrapper;
@@ -81,8 +83,16 @@ public class UndertowModule extends ConfigModule {
 
     @Provides
     @Singleton
-    public UndertowServer createServer(Builder builder) {
-        return new UndertowServer(builder);
+    public UndertowServer createServer(Builder builder,
+                                       BootLogger bootLogger,
+                                       ShutdownManager shutdownManager) {
+        UndertowServer server = new UndertowServer(builder);
+        shutdownManager.addShutdownHook(() -> {
+            bootLogger.trace(() -> "stopping Undertow...");
+            server.stop();
+        });
+
+        return server;
     }
 
     @Provides

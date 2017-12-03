@@ -1,3 +1,7 @@
+## 0.25
+
+* #8 Using ShutdownManager for shutdown
+
 ## 0.4
 
 * #3 Update UndertowTestFactory to match new core test API
