@@ -30,7 +30,11 @@ import java.util.function.Function;
  * </pre>
  *
  * @since 0.1
+ * @deprecated since 0.25 use faster generic test factory:
+ * <code>BQTestFactory.app("-s").autoLoadModule().createRuntime().run()</code> or
+ * <code>BQTestFactory.app("-s").autoLoadModule().run()</code>
  */
+@Deprecated
 public class UndertowTestFactory extends BQDaemonTestFactory {
     /**
      * @return a new instance of builder for the test runtime stack.

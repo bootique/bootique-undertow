@@ -1,5 +1,6 @@
 ## 0.25
 
+* #7 Non-blocking ServerCommand
 * #8 Using ShutdownManager for shutdown
 
 ## 0.4

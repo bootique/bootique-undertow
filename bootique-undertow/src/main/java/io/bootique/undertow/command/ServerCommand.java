@@ -39,17 +39,7 @@ public class ServerCommand extends CommandWithMetadata {
             return CommandOutcome.failed(1, e);
         }
 
-        try {
-            Thread.currentThread().join();
-        } catch (InterruptedException ie) {
-            try {
-                server.stop();
-            } catch (Exception se) {
-                return CommandOutcome.failed(1, se);
-            }
-        }
-
-        return CommandOutcome.succeeded();
+        return CommandOutcome.succeededAndForkedToBackground();
     }
 
     private static CommandMetadata createMetadata() {
