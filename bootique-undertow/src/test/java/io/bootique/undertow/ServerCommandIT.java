@@ -1,5 +1,6 @@
 package io.bootique.undertow;
 
+import io.bootique.command.CommandOutcome;
 import io.bootique.test.junit.BQTestFactory;
 import io.bootique.undertow.handlers.Controller;
 import io.undertow.server.HttpServerExchange;
@@ -13,6 +14,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ServerCommandIT {
 
@@ -22,9 +24,12 @@ public class ServerCommandIT {
     @Test
     public void testRun() {
 
-        testFactory.app("-s")
+        CommandOutcome outcome = testFactory.app("-s")
                 .module(b -> UndertowModule.extend(b).addController(TestController.class))
                 .run();
+
+        assertTrue(outcome.isSuccess());
+        assertTrue(outcome.forkedToBackground());
 
         // testing that the server is in the operational state by the time ServerCommand exits...
         WebTarget base = ClientBuilder.newClient().target("http://localhost:8080");
