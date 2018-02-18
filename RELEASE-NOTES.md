@@ -2,7 +2,7 @@
 
 * #7 Non-blocking ServerCommand
 * #8 Using ShutdownManager for shutdown
-* #9 Update undertow to 1.4.21.Final
+* #10 Update undertow to 1.4.22.Final
 
 ## 0.4
 
