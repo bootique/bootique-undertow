@@ -6,8 +6,8 @@ import org.junit.Test;
 public class UndertowModuleProviderTest {
 
     @Test
-    public void testPresentInJar() {
-        BQModuleProviderChecker.testPresentInJar(UndertowModuleProvider.class);
+    public void testAutoLoadable() {
+        BQModuleProviderChecker.testAutoLoadable(UndertowModuleProvider.class);
 
     }
 
