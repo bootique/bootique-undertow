@@ -12,29 +12,7 @@ Fast, Testable, Simple HTTP Server, that supports DI in Controllers and Middlewa
 
 ## Features:
 
-1. Configure server via Bootique YAML config.
-2. Contribute HandlerWrappers aka Middleware
-3. Contribute Controllers
-4. DI should work with Controllers and Middleware
-
-
-## IDEAS:
-
-Routing: 
-```
-router.GET("/", Controller::showPost).middleware(Convector::toJson, Check::checkSome);
-```
-
-```kotlin
-fun route(request: ServerRequest) = RouterFunctionDsl {
-    accept(TEXT_HTML).apply {
-            (GET("/user/") or GET("/users/")) { findAllView() }
-            GET("/user/{login}") { findViewById() }
-    }
-    accept(APPLICATION_JSON).apply {
-            (GET("/api/user/") or GET("/api/users/")) { findAll() }
-            POST("/api/user/") { create() }
-            POST("/api/user/{login}") { findOne() }
-    }
- } (request)
- ```
+1. Configure server via yaml config;
+2. Contribute HandlerWrappers aka Middleware;
+3. Contribute Controllers;
+4. Inject dependencies into Controllers and Middlewares.
