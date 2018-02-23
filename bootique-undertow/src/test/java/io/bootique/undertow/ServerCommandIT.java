@@ -2,16 +2,18 @@ package io.bootique.undertow;
 
 import io.bootique.command.CommandOutcome;
 import io.bootique.test.junit.BQTestFactory;
-import io.bootique.undertow.handlers.Controller;
+import io.bootique.undertow.handlers.RootHandlerProvider;
+import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
-import io.undertow.server.RoutingHandler;
 import io.undertow.util.Headers;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.util.EntityUtils;
 import org.junit.Rule;
 import org.junit.Test;
 
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -22,30 +24,25 @@ public class ServerCommandIT {
     public BQTestFactory testFactory = new BQTestFactory().autoLoadModules();
 
     @Test
-    public void testRun() {
-
-        CommandOutcome outcome = testFactory.app("-s")
-                .module(b -> UndertowModule.extend(b).addController(TestController.class))
+    public void testRun() throws IOException {
+        CommandOutcome outcome = testFactory.app("--server")
+                .module(b -> b.bind(RootHandlerProvider.class).toInstance(RootHandlerProvider.of(new TestHandler())))
                 .run();
 
         assertTrue(outcome.isSuccess());
         assertTrue(outcome.forkedToBackground());
 
         // testing that the server is in the operational state by the time ServerCommand exits...
-        WebTarget base = ClientBuilder.newClient().target("http://localhost:8080");
+        final HttpResponse response = Request.Get("http://localhost:8080/").execute().returnResponse();
 
-        Response r = base.path("/").request().get();
-        assertEquals(Response.Status.OK.getStatusCode(), r.getStatus());
-        assertEquals("Hello World!", r.readEntity(String.class));
+        assertEquals(HttpStatus.SC_OK, response.getStatusLine().getStatusCode());
+        assertEquals("Hello World!", EntityUtils.toString(response.getEntity()));
     }
 
-    public static class TestController implements Controller {
-        @Override
-        public void defineRoutes(RoutingHandler routingHandler) {
-            routingHandler.get("/", this::get);
-        }
+    public static class TestHandler implements HttpHandler {
 
-        public void get(HttpServerExchange exchange) {
+        @Override
+        public void handleRequest(HttpServerExchange exchange) {
             exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
             exchange.getResponseSender().send("Hello World!");
         }

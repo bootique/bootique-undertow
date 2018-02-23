@@ -3,7 +3,6 @@ package io.bootique.undertow.config;
 import io.bootique.annotation.BQConfigProperty;
 import io.bootique.resource.ResourceFactory;
 
-// TODO: Check if passwords can be byte-arrays
 public class HttpsListener extends HttpListener {
     private ResourceFactory keyStore;
     private String keystorePassword;

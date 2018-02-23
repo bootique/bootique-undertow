@@ -26,6 +26,7 @@
     <properties>
         <bootique-version>${project.version}</bootique-version>
         <undertow-version>1.4.22.Final</undertow-version>
+        <apache-hc-version>4.5.5</apache-hc-version>
     </properties>
 
     <scm>
@@ -75,9 +76,9 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.glassfish.jersey.core</groupId>
-                <artifactId>jersey-client</artifactId>
-                <version>2.21</version>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>fluent-hc</artifactId>
+                <version>${apache-hc-version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

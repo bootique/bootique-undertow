@@ -9,10 +9,3 @@ See usage example [bootique-undertow-demo](https://github.com/bootique-examples/
 ## Goals
 
 Fast, Testable, Simple HTTP Server, that supports DI in Controllers and Middlewares.
-
-## Features:
-
-1. Configure server via yaml config;
-2. Contribute HandlerWrappers aka Middleware;
-3. Contribute Controllers;
-4. Inject dependencies into Controllers and Middlewares.

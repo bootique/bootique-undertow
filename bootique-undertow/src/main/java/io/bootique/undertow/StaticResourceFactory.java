@@ -3,11 +3,6 @@ package io.bootique.undertow;
 import io.bootique.annotation.BQConfig;
 import io.bootique.annotation.BQConfigProperty;
 import io.bootique.resource.FolderResourceFactory;
-import io.undertow.server.handlers.resource.PathResourceManager;
-import io.undertow.server.handlers.resource.ResourceManager;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Represents settings for static files serving.
@@ -28,11 +23,6 @@ public class StaticResourceFactory {
      * Cache files in memory.
      */
     private boolean cache;
-
-    public ResourceManager getResourceManager() {
-        final Path folder = Paths.get(path.getResourceId());
-        return new PathResourceManager(folder, 10000L);
-    }
 
     public FolderResourceFactory getPath() {
         return path;
