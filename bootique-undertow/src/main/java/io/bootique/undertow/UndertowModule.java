@@ -9,7 +9,9 @@ import io.bootique.config.ConfigurationFactory;
 import io.bootique.log.BootLogger;
 import io.bootique.shutdown.ShutdownManager;
 import io.bootique.undertow.command.ServerCommand;
-import io.bootique.undertow.handlers.RootHandlerProvider;
+import io.bootique.undertow.handlers.DefaultHandler;
+import io.bootique.undertow.handlers.RootHandler;
+import io.undertow.server.HttpHandler;
 
 import javax.net.ssl.SSLContext;
 
@@ -25,6 +27,11 @@ public class UndertowModule extends ConfigModule {
     public void configure(Binder binder) {
         BQCoreModule.extend(binder)
                 .addCommand(ServerCommand.class);
+
+        binder.bind(HttpHandler.class)
+                .annotatedWith(RootHandler.class)
+                .to(DefaultHandler.class)
+                .in(Singleton.class);
     }
 
     @Provides
@@ -54,7 +61,7 @@ public class UndertowModule extends ConfigModule {
     @Provides
     public Builder createBuilder(
             UndertowFactory undertowFactory,
-            RootHandlerProvider rootHandlerProvider
+            @RootHandler HttpHandler rootHandler
     ) {
         final Builder builder = builder();
 
@@ -91,7 +98,7 @@ public class UndertowModule extends ConfigModule {
             builder.setDirectBuffers(undertowFactory.getDirectBuffers());
         }
 
-        builder.setHandler(rootHandlerProvider.handler());
+        builder.setHandler(rootHandler);
 
         return builder;
     }

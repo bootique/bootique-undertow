@@ -2,7 +2,7 @@ package io.bootique.undertow;
 
 import io.bootique.command.CommandOutcome;
 import io.bootique.test.junit.BQTestFactory;
-import io.bootique.undertow.handlers.RootHandlerProvider;
+import io.bootique.undertow.handlers.RootHandler;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
@@ -26,7 +26,8 @@ public class ServerCommandIT {
     @Test
     public void testRun() throws IOException {
         CommandOutcome outcome = testFactory.app("--server")
-                .module(b -> b.bind(RootHandlerProvider.class).toInstance(RootHandlerProvider.of(new TestHandler())))
+                .override(UndertowModule.class)
+                .with(b -> b.bind(HttpHandler.class).annotatedWith(RootHandler.class).to(TestHandler.class))
                 .run();
 
         assertTrue(outcome.isSuccess());
