@@ -2,7 +2,7 @@
 
 * #7 Non-blocking ServerCommand
 * #8 Using ShutdownManager for shutdown
-* #10 Update undertow to 1.4.22.Final
+* #12 Update undertow to 2.0.0.Final
 * #11 Upgrade to bootique-modules-parent 0.8
 
 ## 0.4
