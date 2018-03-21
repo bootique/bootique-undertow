@@ -25,7 +25,7 @@
 
     <properties>
         <bootique-version>${project.version}</bootique-version>
-        <undertow-version>2.0.1.Final</undertow-version>
+        <undertow-version>2.0.3.Final</undertow-version>
         <apache-hc-version>4.5.5</apache-hc-version>
     </properties>
 
