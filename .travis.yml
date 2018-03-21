@@ -18,12 +18,12 @@ jobs:
       script:
         - mvn clean verify
     - stage: build
-      if: branch = master AND type IN (push) AND env(CI_DEPLOY_USERNAME) IS present
+      if: branch = master AND type IN (push) AND fork = true
       jdk: oraclejdk8
       script:
         - mvn clean source:jar javadoc:javadoc deploy --settings travis_settings.xml
     - stage: build
-      if: branch = master AND type IN (push) AND env(CI_DEPLOY_USERNAME) IS blank
+      if: branch = master AND type IN (push) AND fork = false
       jdk: oraclejdk8
       script:
         - mvn clean verify
