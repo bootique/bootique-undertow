@@ -18,11 +18,15 @@ jobs:
       script:
         - mvn clean verify
     - stage: build
-      if: branch = master AND type IN (push)
+      if: branch = master AND type IN (push) AND env(CI_DEPLOY_USERNAME) IS present
       jdk: oraclejdk8
       script:
-        - if [ -n "${CI_DEPLOY_USERNAME}" ]; then mvn clean source:jar javadoc:javadoc deploy --settings travis_settings.xml; fi
-        - if [ -z "${CI_DEPLOY_USERNAME}" ]; then mvn clean verify; fi
+        - mvn clean source:jar javadoc:javadoc deploy --settings travis_settings.xml
+    - stage: build
+      if: branch = master AND type IN (push) AND env(CI_DEPLOY_USERNAME) IS blank
+      jdk: oraclejdk8
+      script:
+        - mvn clean verify
 
 # travis encrypt -r bootique/bootique-undertow "CI_DEPLOY_USERNAME='name'"
 # travis encrypt -r bootique/bootique-undertow "CI_DEPLOY_PASSWORD='password'"
