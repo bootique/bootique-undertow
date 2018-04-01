@@ -6,8 +6,8 @@ import io.bootique.undertow.handlers.RootHandler;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
+import io.undertow.util.StatusCodes;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.util.EntityUtils;
 import org.junit.Rule;
@@ -26,9 +26,13 @@ public class ServerCommandIT {
     @Test
     public void testRun() throws IOException {
         CommandOutcome outcome = testFactory.app("--server")
-                .override(UndertowModule.class)
-                .with(b -> b.bind(HttpHandler.class).annotatedWith(RootHandler.class).to(TestHandler.class))
-                .run();
+            .override(UndertowModule.class)
+            .with(
+                b -> b.bind(HttpHandler.class)
+                    .annotatedWith(RootHandler.class)
+                    .to(TestHandler.class)
+            )
+            .run();
 
         assertTrue(outcome.isSuccess());
         assertTrue(outcome.forkedToBackground());
@@ -36,7 +40,7 @@ public class ServerCommandIT {
         // testing that the server is in the operational state by the time ServerCommand exits...
         final HttpResponse response = Request.Get("http://localhost:8080/").execute().returnResponse();
 
-        assertEquals(HttpStatus.SC_OK, response.getStatusLine().getStatusCode());
+        assertEquals(StatusCodes.OK, response.getStatusLine().getStatusCode());
         assertEquals("Hello World!", EntityUtils.toString(response.getEntity()));
     }
 

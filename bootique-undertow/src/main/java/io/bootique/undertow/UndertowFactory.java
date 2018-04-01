@@ -22,12 +22,10 @@ public class UndertowFactory {
     private Integer ioThreads;
     private Integer workerThreads;
     private Boolean directBuffers;
-    private List<StaticResourceFactory> staticFiles;
 
     public UndertowFactory() {
         httpListeners = Collections.singletonList(new HttpListener());
         httpsListeners = new ArrayList<>();
-        staticFiles = new ArrayList<>();
     }
 
     public List<HttpListener> getHttpListeners() {
@@ -87,16 +85,6 @@ public class UndertowFactory {
     @BQConfigProperty
     public UndertowFactory setDirectBuffers(Boolean directBuffers) {
         this.directBuffers = directBuffers;
-        return this;
-    }
-
-    public List<StaticResourceFactory> getStaticFiles() {
-        return staticFiles;
-    }
-
-    @BQConfigProperty
-    public UndertowFactory setStaticFiles(List<StaticResourceFactory> staticFiles) {
-        this.staticFiles = staticFiles;
         return this;
     }
 }
