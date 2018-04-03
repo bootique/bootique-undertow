@@ -20,7 +20,6 @@
 
     <modules>
         <module>bootique-undertow</module>
-        <module>bootique-undertow-test</module>
     </modules>
 
     <properties>

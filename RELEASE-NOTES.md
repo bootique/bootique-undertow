@@ -1,3 +1,7 @@
+## 0.26
+
+* #13 Cleaning up APIs deprecated since <= 0.25
+
 ## 0.25
 
 * #7 Non-blocking ServerCommand
@@ -14,7 +18,7 @@
 ## 0.3
 
 * #1 Upgrade to Bootique 0.22
-* #2 Replace "contribute*" methods with more modern "extend" API
+* #2 Replace "contribute" methods with more modern "extend" API
 
 ## 0.2 [SKIPPED]
 
