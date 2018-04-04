@@ -1,6 +1,7 @@
 ## 0.26
 
 * #13 Cleaning up APIs deprecated since <= 0.25
+* #14 Better API for contributing single binding.
 
 ## 0.25
 

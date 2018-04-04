@@ -26,12 +26,7 @@ public class ServerCommandIT {
     @Test
     public void testRun() throws IOException {
         CommandOutcome outcome = testFactory.app("--server")
-            .override(UndertowModule.class)
-            .with(
-                b -> b.bind(HttpHandler.class)
-                    .annotatedWith(RootHandler.class)
-                    .to(TestHandler.class)
-            )
+            .module(b -> b.bind(HttpHandler.class).annotatedWith(RootHandler.class).to(TestHandler.class))
             .run();
 
         assertTrue(outcome.isSuccess());

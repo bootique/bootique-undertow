@@ -8,7 +8,6 @@ public class UndertowModuleProviderTest {
     @Test
     public void testAutoLoadable() {
         BQModuleProviderChecker.testAutoLoadable(UndertowModuleProvider.class);
-
     }
 
     @Test
