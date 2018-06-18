@@ -13,10 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Since 4GB is not enough for the build, we use 'sudo' environment with 7.5GB RAM
-# Downside: It's starts a little bit slower
-# How to fix: Change build setting or fix code.
-# https://docs.travis-ci.com/user/ci-environment/#Virtualization-environments
 language: java
 
 jobs:
