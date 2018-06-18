@@ -1,5 +1,5 @@
-################################################################################
-#    Licensed to the ObjectStyle LLC under one
+#####################################################################
+#    Licensed to ObjectStyle LLC under one
 #  or more contributor license agreements.  See the NOTICE file
 #  distributed with this work for additional information
 #  regarding copyright ownership.  The ObjectStyle LLC licenses
@@ -15,6 +15,6 @@
 #  KIND, either express or implied.  See the License for the
 #  specific language governing permissions and limitations
 #  under the License.
-################################################################################
+#####################################################################
 
 io.bootique.undertow.UndertowModuleProvider
