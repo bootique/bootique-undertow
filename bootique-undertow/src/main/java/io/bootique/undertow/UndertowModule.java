@@ -53,8 +53,8 @@ public class UndertowModule extends ConfigModule {
 
     @Provides
     @Singleton
-    public UndertowFactory undertowFactory(ConfigurationFactory configurationFactory) {
-        return configurationFactory.config(UndertowFactory.class, configPrefix);
+    public UndertowFactory undertowFactory(ConfigurationFactory configFactory) {
+        return config(UndertowFactory.class, configFactory);
     }
 
     @Provides
