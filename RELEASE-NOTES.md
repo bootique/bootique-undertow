@@ -1,3 +1,7 @@
+## 1.1
+
+* #16 Update Undertow to 2.0.23 
+
 ## 1.0.RC1
 
 * #13 Cleaning up APIs deprecated since <= 0.25

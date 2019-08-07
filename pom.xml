@@ -43,7 +43,7 @@
 
     <properties>
         <bootique.version>${project.version}</bootique.version>
-        <undertow.version>2.0.13.Final</undertow.version>
+        <undertow.version>2.0.23.Final</undertow.version>
         <apache.hc.version>4.5.6</apache.hc.version>
     </properties>
 
