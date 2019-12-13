@@ -19,21 +19,20 @@
 
 package io.bootique.undertow;
 
-import com.google.inject.Binder;
-import com.google.inject.Key;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
-import com.google.inject.multibindings.OptionalBinder;
 import io.bootique.BQCoreModule;
 import io.bootique.BootiqueException;
 import io.bootique.ConfigModule;
 import io.bootique.config.ConfigurationFactory;
+import io.bootique.di.Binder;
+import io.bootique.di.Key;
+import io.bootique.di.Provides;
 import io.bootique.log.BootLogger;
 import io.bootique.shutdown.ShutdownManager;
 import io.bootique.undertow.command.ServerCommand;
 import io.bootique.undertow.handlers.RootHandler;
 import io.undertow.server.HttpHandler;
 
+import javax.inject.Singleton;
 import javax.net.ssl.SSLContext;
 import java.util.Optional;
 
@@ -48,7 +47,7 @@ public class UndertowModule extends ConfigModule {
     @Override
     public void configure(Binder binder) {
         BQCoreModule.extend(binder).addCommand(ServerCommand.class);
-        OptionalBinder.newOptionalBinder(binder, Key.get(HttpHandler.class, RootHandler.class));
+        binder.bindOptional(Key.get(HttpHandler.class, RootHandler.class));
     }
 
     @Provides

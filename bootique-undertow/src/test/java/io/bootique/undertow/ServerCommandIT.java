@@ -45,7 +45,7 @@ public class ServerCommandIT {
     @Test
     public void testRun() throws IOException {
         CommandOutcome outcome = testFactory.app("--server")
-            .module(b -> b.bind(HttpHandler.class).annotatedWith(RootHandler.class).to(TestHandler.class))
+            .module(b -> b.bind(HttpHandler.class, RootHandler.class).to(TestHandler.class))
             .run();
 
         assertTrue(outcome.isSuccess());
