@@ -16,7 +16,7 @@
   specific language governing permissions and limitations
   under the License.
   -->
-[![Build Status](https://travis-ci.org/bootique/bootique-undertow.svg)](https://travis-ci.org/bootique/bootique-undertow)
+[![build test deploy](https://github.com/bootique/bootique-undertow/actions/workflows/maven.yml/badge.svg)](https://github.com/bootique/bootique-undertow/actions/workflows/maven.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/io.bootique.undertow/bootique-undertow.svg?colorB=brightgreen)](https://search.maven.org/artifact/io.bootique.undertow/bootique-undertow/)
 
 # bootique-undertow
