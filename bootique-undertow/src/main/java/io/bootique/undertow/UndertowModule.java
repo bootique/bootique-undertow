@@ -39,9 +39,6 @@ import java.util.Optional;
 import static io.undertow.Undertow.Builder;
 import static io.undertow.Undertow.builder;
 
-/**
- * @since 0.1
- */
 public class UndertowModule extends ConfigModule {
 
     @Override

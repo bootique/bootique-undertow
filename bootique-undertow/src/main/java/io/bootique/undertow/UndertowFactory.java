@@ -30,8 +30,6 @@ import java.util.List;
 
 /**
  * Represents settings for of Undertow server.
- *
- * @since 0.1
  */
 @BQConfig
 public class UndertowFactory {

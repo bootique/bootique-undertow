@@ -24,8 +24,6 @@ import io.undertow.Undertow.Builder;
 
 /**
  * Bootique wrapper around undertow for managing state of server.
- *
- * @since 0.1
  */
 public class UndertowServer {
 
