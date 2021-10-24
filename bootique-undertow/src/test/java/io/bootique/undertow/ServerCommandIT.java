@@ -20,30 +20,33 @@
 package io.bootique.undertow;
 
 import io.bootique.command.CommandOutcome;
-import io.bootique.test.junit.BQTestFactory;
+import io.bootique.junit5.BQTest;
+import io.bootique.junit5.BQTestFactory;
+import io.bootique.junit5.BQTestTool;
 import io.bootique.undertow.handlers.RootHandler;
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
 import io.undertow.util.StatusCodes;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.fluent.Request;
-import org.apache.http.util.EntityUtils;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@BQTest
 public class ServerCommandIT {
 
-    @Rule
-    public BQTestFactory testFactory = new BQTestFactory().autoLoadModules();
+    @BQTestTool
+    final BQTestFactory testFactory = new BQTestFactory().autoLoadModules();
 
     @Test
-    public void testRun() throws IOException {
+    public void testRun() {
+
+        // TODO: dynamic port for tests similar to what JettyTester does
         CommandOutcome outcome = testFactory.app("--server")
             .module(b -> b.bind(HttpHandler.class, RootHandler.class).to(TestHandler.class))
             .run();
@@ -52,10 +55,11 @@ public class ServerCommandIT {
         assertTrue(outcome.forkedToBackground());
 
         // testing that the server is in the operational state by the time ServerCommand exits...
-        final HttpResponse response = Request.Get("http://localhost:8080/").execute().returnResponse();
+        WebTarget target = ClientBuilder.newClient().target("http://localhost:8080/");
+        Response response = target.request().get();
 
-        assertEquals(StatusCodes.OK, response.getStatusLine().getStatusCode());
-        assertEquals("Hello World!", EntityUtils.toString(response.getEntity()));
+        assertEquals(StatusCodes.OK, response.getStatus());
+        assertEquals("Hello World!", response.readEntity(String.class));
     }
 
     public static class TestHandler implements HttpHandler {
