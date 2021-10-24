@@ -1,3 +1,7 @@
+## 2.0.RC1
+
+* #19 Upgrade to Undertow 2.0.41.Final
+
 ## 1.1
 
 * #16 Update Undertow to 2.0.23 
