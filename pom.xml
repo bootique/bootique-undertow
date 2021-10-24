@@ -55,24 +55,14 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.bootique.undertow</groupId>
-                <artifactId>bootique-undertow</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.bootique.undertow</groupId>
-                <artifactId>bootique-undertow-test</artifactId>
-                <version>${project.version}</version>
+                <groupId>io.undertow</groupId>
+                <artifactId>undertow-core</artifactId>
+                <version>${undertow.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.bootique</groupId>
                 <artifactId>bootique</artifactId>
                 <version>${bootique.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.undertow</groupId>
-                <artifactId>undertow-core</artifactId>
-                <version>${undertow.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.bootique</groupId>
