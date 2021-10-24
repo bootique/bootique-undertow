@@ -1,3 +1,7 @@
+## 3.0.M1
+
+* #18 Upgrade to Undertow 2.2.12
+
 ## 1.1
 
 * #16 Update Undertow to 2.0.23 
