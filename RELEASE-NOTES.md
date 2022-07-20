@@ -1,6 +1,7 @@
 ## 3.0.M1
 
 * #18 Upgrade to Undertow 2.2.12
+* #21 Bump undertow-core from 2.2.12.Final to 2.2.18.Final
 
 ## 1.1
 
