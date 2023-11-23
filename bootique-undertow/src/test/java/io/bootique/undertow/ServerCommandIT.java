@@ -44,7 +44,7 @@ public class ServerCommandIT {
     final BQTestFactory testFactory = new BQTestFactory().autoLoadModules();
 
     @Test
-    public void testRun() {
+    public void run() {
 
         // TODO: dynamic port for tests similar to what JettyTester does
         CommandOutcome outcome = testFactory.app("--server")

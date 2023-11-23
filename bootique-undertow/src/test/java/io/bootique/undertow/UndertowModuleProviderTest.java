@@ -25,12 +25,12 @@ import org.junit.jupiter.api.Test;
 public class UndertowModuleProviderTest {
 
     @Test
-    public void testAutoLoadable() {
+    public void autoLoadable() {
         BQModuleProviderChecker.testAutoLoadable(UndertowModuleProvider.class);
     }
 
     @Test
-    public void testMetadata() {
+    public void metadata() {
         BQModuleProviderChecker.testMetadata(UndertowModuleProvider.class);
     }
 }
