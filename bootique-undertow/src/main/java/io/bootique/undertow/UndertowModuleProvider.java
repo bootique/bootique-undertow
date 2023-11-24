@@ -20,23 +20,16 @@
 package io.bootique.undertow;
 
 import io.bootique.BQModuleProvider;
-import io.bootique.di.BQModule;
-
-import java.lang.reflect.Type;
-import java.util.Collections;
-import java.util.Map;
+import io.bootique.bootstrap.BuiltModule;
 
 public class UndertowModuleProvider implements BQModuleProvider {
 
     @Override
-    public BQModule module() {
-        return new UndertowModule();
-    }
-
-    @Override
-    public Map<String, Type> configs() {
-        // TODO: config prefix is hardcoded. Refactor away from ConfigModule, and make provider
-        // generate config prefix, reusing it in metadata...
-        return Collections.singletonMap("undertow", UndertowFactory.class);
+    public BuiltModule buildModule() {
+        return BuiltModule.of(new UndertowModule())
+                .provider(this)
+                .description("Integrates Undertow web server")
+                .config("undertow", UndertowFactory.class)
+                .build();
     }
 }
