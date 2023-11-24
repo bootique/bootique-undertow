@@ -21,10 +21,10 @@
 
 # bootique-undertow
 
+**WARNING: the last release of Bootique that supports "bootique-undertow" is 3.0. It is currently deprecated, and will be removed from Bootique 4.0. We recommend our users to switch to Jetty, or to fork this module and support it on their own.**
+
 Provides [Undertow](http://undertow.io/) integration with [Bootique](http://bootique.io).
 See usage example [bootique-undertow-demo](https://github.com/bootique-examples/bootique-undertow-demo).
-
-**WARNING: last release of Bootique that supports "bootique-undertow" is 3.0. It is currently deprecated, and will be removed from Bootique 4.0. We recommend our users to switch to Jetty, or to fork this module and support it on their own.**
 
 ## Goals
 
