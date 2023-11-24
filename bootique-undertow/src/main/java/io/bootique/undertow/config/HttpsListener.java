@@ -22,6 +22,10 @@ package io.bootique.undertow.config;
 import io.bootique.annotation.BQConfigProperty;
 import io.bootique.resource.ResourceFactory;
 
+/**
+ * @deprecated No longer supported, the users are encouraged to switch to Jetty.
+ */
+@Deprecated(since = "3.0", forRemoval = true)
 public class HttpsListener extends HttpListener {
     private ResourceFactory keyStore;
     private String keystorePassword;

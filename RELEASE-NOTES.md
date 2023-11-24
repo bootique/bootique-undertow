@@ -1,3 +1,7 @@
+## 3.0-M3
+
+* #25 Deprecate bootique-undertow
+
 ## 3.0.M2
 
 * #23 Bump undertow-core from 2.2.19.Final to 2.2.24.Final 

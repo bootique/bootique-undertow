@@ -30,7 +30,10 @@ import java.util.List;
 
 /**
  * Represents settings for of Undertow server.
+ *
+ * @deprecated No longer supported, the users are encouraged to switch to Jetty.
  */
+@Deprecated(since = "3.0", forRemoval = true)
 @BQConfig
 public class UndertowFactory {
     private List<HttpListener> httpListeners;

@@ -21,6 +21,10 @@ package io.bootique.undertow.config;
 
 import io.bootique.annotation.BQConfigProperty;
 
+/**
+ * @deprecated No longer supported, the users are encouraged to switch to Jetty.
+ */
+@Deprecated(since = "3.0", forRemoval = true)
 public class HttpListener {
     private Integer port;
     private String host;

@@ -39,6 +39,10 @@ import java.util.Optional;
 import static io.undertow.Undertow.Builder;
 import static io.undertow.Undertow.builder;
 
+/**
+ * @deprecated No longer supported, the users are encouraged to switch to Jetty.
+ */
+@Deprecated(since = "3.0", forRemoval = true)
 public class UndertowModule extends ConfigModule {
 
     @Override

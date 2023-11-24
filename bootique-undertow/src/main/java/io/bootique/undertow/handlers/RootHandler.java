@@ -29,8 +29,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * Handler which will be contributed to undertow.
  *
- * @author Ibragimov Ruslan
+ * @deprecated No longer supported, the users are encouraged to switch to Jetty.
  */
+@Deprecated(since = "3.0", forRemoval = true)
 @Qualifier
 @Target({FIELD, PARAMETER, METHOD})
 @Retention(RUNTIME)

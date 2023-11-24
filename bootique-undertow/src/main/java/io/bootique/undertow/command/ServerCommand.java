@@ -32,7 +32,10 @@ import javax.inject.Provider;
 
 /**
  * Command for running Undertow server.
+ *
+ * @deprecated No longer supported, the users are encouraged to switch to Jetty.
  */
+@Deprecated(since = "3.0", forRemoval = true)
 public class ServerCommand extends CommandWithMetadata {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServerCommand.class);
