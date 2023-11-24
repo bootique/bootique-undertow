@@ -32,7 +32,7 @@ public class UndertowModuleProvider implements BQModuleProvider {
     public BuiltModule buildModule() {
         return BuiltModule.of(new UndertowModule())
                 .provider(this)
-                .description("Integrates Undertow web server")
+                .description("Deprecated, the closest replacement is 'bootique-jetty'.")
                 .config("undertow", UndertowFactory.class)
                 .build();
     }
