@@ -20,7 +20,7 @@
 package io.bootique.undertow;
 
 import io.bootique.BQModuleProvider;
-import io.bootique.bootstrap.BuiltModule;
+import io.bootique.ModuleCrate;
 
 /**
  * @deprecated No longer supported, the users are encouraged to switch to Jetty.
@@ -29,8 +29,8 @@ import io.bootique.bootstrap.BuiltModule;
 public class UndertowModuleProvider implements BQModuleProvider {
 
     @Override
-    public BuiltModule buildModule() {
-        return BuiltModule.of(new UndertowModule())
+    public ModuleCrate moduleCrate() {
+        return ModuleCrate.of(new UndertowModule())
                 .provider(this)
                 .description("Deprecated, the closest replacement is 'bootique-jetty'.")
                 .config("undertow", UndertowFactory.class)
