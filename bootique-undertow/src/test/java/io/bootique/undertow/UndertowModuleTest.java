@@ -19,18 +19,13 @@
 package io.bootique.undertow;
 
 
-import io.bootique.junit5.BQModuleProviderChecker;
+import io.bootique.junit5.BQModuleTester;
 import org.junit.jupiter.api.Test;
 
-public class UndertowModuleProviderTest {
+public class UndertowModuleTest {
 
     @Test
-    public void autoLoadable() {
-        BQModuleProviderChecker.testAutoLoadable(UndertowModuleProvider.class);
-    }
-
-    @Test
-    public void metadata() {
-        BQModuleProviderChecker.testMetadata(UndertowModuleProvider.class);
+    public void check() {
+        BQModuleTester.of(UndertowModule.class).testAutoLoadable().testConfig();
     }
 }

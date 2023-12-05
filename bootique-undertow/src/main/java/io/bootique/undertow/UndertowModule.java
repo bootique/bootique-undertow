@@ -22,6 +22,7 @@ package io.bootique.undertow;
 import io.bootique.BQCoreModule;
 import io.bootique.BootiqueException;
 import io.bootique.ConfigModule;
+import io.bootique.ModuleCrate;
 import io.bootique.config.ConfigurationFactory;
 import io.bootique.di.Binder;
 import io.bootique.di.Key;
@@ -44,6 +45,14 @@ import static io.undertow.Undertow.builder;
  */
 @Deprecated(since = "3.0", forRemoval = true)
 public class UndertowModule extends ConfigModule {
+
+    @Override
+    public ModuleCrate crate() {
+        return ModuleCrate.of(this)
+                .description("Deprecated, the closest replacement is 'bootique-jetty'.")
+                .config("undertow", UndertowFactory.class)
+                .build();
+    }
 
     @Override
     public void configure(Binder binder) {
