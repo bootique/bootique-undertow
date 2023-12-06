@@ -74,13 +74,7 @@ public class UndertowModule extends ConfigModule {
             ShutdownManager shutdownManager
     ) {
         UndertowServer server = new UndertowServer(builder);
-
-        shutdownManager.addShutdownHook(() -> {
-            bootLogger.trace(() -> "stopping Undertow...");
-            server.stop();
-        });
-
-        return server;
+        return shutdownManager.onShutdown(server, UndertowServer::stop);
     }
 
     @Singleton
@@ -125,16 +119,16 @@ public class UndertowModule extends ConfigModule {
         }
 
         httpHandler
-            .map(builder::setHandler)
-            .orElseThrow(this::noHttpHandlerException);
+                .map(builder::setHandler)
+                .orElseThrow(this::noHttpHandlerException);
 
         return builder;
     }
 
     private BootiqueException noHttpHandlerException() {
         return new BootiqueException(1,
-            "Module Bootique-Undertow excepts user binding of type io.undertow.server.HttpHandler " +
-                "marked with io.bootique.undertow.handlers.RootHandler annotation."
+                "Module Bootique-Undertow excepts user binding of type io.undertow.server.HttpHandler " +
+                        "marked with io.bootique.undertow.handlers.RootHandler annotation."
         );
     }
 
