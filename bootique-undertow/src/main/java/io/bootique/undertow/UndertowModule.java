@@ -19,10 +19,7 @@
 
 package io.bootique.undertow;
 
-import io.bootique.BQCoreModule;
-import io.bootique.BootiqueException;
-import io.bootique.ConfigModule;
-import io.bootique.ModuleCrate;
+import io.bootique.*;
 import io.bootique.config.ConfigurationFactory;
 import io.bootique.di.Binder;
 import io.bootique.di.Key;
@@ -44,13 +41,15 @@ import static io.undertow.Undertow.builder;
  * @deprecated No longer supported, the users are encouraged to switch to Jetty.
  */
 @Deprecated(since = "3.0", forRemoval = true)
-public class UndertowModule extends ConfigModule {
+public class UndertowModule implements BQModule {
+
+    private static final String CONFIG_PREFIX = "undertow";
 
     @Override
     public ModuleCrate crate() {
         return ModuleCrate.of(this)
                 .description("Deprecated, the closest replacement is 'bootique-jetty'.")
-                .config("undertow", UndertowFactory.class)
+                .config(CONFIG_PREFIX, UndertowFactory.class)
                 .build();
     }
 
@@ -63,7 +62,7 @@ public class UndertowModule extends ConfigModule {
     @Provides
     @Singleton
     public UndertowFactory undertowFactory(ConfigurationFactory configFactory) {
-        return config(UndertowFactory.class, configFactory);
+        return configFactory.config(UndertowFactory.class, CONFIG_PREFIX);
     }
 
     @Provides
