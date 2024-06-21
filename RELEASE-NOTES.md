@@ -1,3 +1,7 @@
+## 3.0-M5
+
+* #27 Bump io.undertow:undertow-core from 2.3.12.Final to 2.3.14.Final 
+
 ## 3.0-M4
 
 * #26 Bump io.undertow:undertow-core from 2.3.5.Final to 2.3.12.Final
