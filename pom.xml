@@ -43,7 +43,7 @@
 
     <properties>
         <bootique.version>${project.version}</bootique.version>
-        <undertow.version>2.3.14.Final</undertow.version>
+        <undertow.version>2.3.16.Final</undertow.version>
     </properties>
 
     <scm>
