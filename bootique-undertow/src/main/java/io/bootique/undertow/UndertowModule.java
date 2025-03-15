@@ -30,7 +30,7 @@ import io.bootique.undertow.command.ServerCommand;
 import io.bootique.undertow.handlers.RootHandler;
 import io.undertow.server.HttpHandler;
 
-import javax.inject.Singleton;
+import jakarta.inject.Singleton;
 import javax.net.ssl.SSLContext;
 import java.util.Optional;
 
