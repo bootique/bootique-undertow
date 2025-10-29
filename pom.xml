@@ -42,7 +42,7 @@
     </modules>
 
     <properties>
-        <undertow.version>2.3.17.Final</undertow.version>
+        <undertow.version>2.3.20.Final</undertow.version>
     </properties>
 
     <scm>
